@@ -1,7 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
-
+import time
 def createDriver() -> webdriver.Chrome:
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument("--headless")
@@ -19,6 +19,12 @@ def createDriver() -> webdriver.Chrome:
 
 def getGoogleHomepage(driver: webdriver.Chrome) -> str:
     driver.get("https://www.google.com")
+    time.sleep(5)
+    return driver.page_source
+
+def getCustomHomepage(driver: webdriver.Chrome,url=url) -> str:
+    driver.get(url)
+    time.sleep(5)
     return driver.page_source
 
 def doBackgroundTask(inp):
